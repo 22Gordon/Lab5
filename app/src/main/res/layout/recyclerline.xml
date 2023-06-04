@@ -13,7 +13,7 @@
     </TextView>
 
     <TextView
-        android:id="@+id/email"
+        android:id="@+id/body"
         android:text="test@xpto.com"
         android:layout_below="@id/name"
         android:layout_alignLeft="@+id/name"
@@ -22,7 +22,7 @@
     </TextView>
 
     <TextView
-        android:id="@+id/city"
+        android:id="@+id/email"
         android:text="Madrid"
         android:layout_alignTop="@id/name"
         android:layout_alignParentRight="true"

@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val request = ServiceBuilder.buildService(EndPoints::class.java)
-        val call = request.getUsers()
+        val call = request.getComments()
         recyclerView = findViewById(R.id.recyclerView)
 
         call.enqueue(object : Callback<List<User>> {
@@ -40,9 +40,10 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    fun getSingle(view: View) {
+    /*
+    fun getComments(view: View) {
         val request = ServiceBuilder.buildService(EndPoints::class.java)
-        val call = request.getUserById(2)
+        val call = request.getAllComments(2)
         call.enqueue(object : Callback<User>{
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 if (response.isSuccessful){
@@ -55,7 +56,27 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
+*/
+    fun getComments(view: View) {
+        val request = ServiceBuilder.buildService(EndPoints::class.java)
+        val call = request.getAllComments()
+        call.enqueue(object : Callback<List<User>> {
+            override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
+                if (response.isSuccessful) {
+                    val users: List<User> = response.body()!!
+                    val totalComments = users.size
+                    Toast.makeText(this@MainActivity, "Total comments: $totalComments", Toast.LENGTH_SHORT).show()
+                }
+            }
 
+            override fun onFailure(call: Call<List<User>>, t: Throwable) {
+                Toast.makeText(this@MainActivity, "${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+
+    /*
     fun post(view: View) {
         val request = ServiceBuilder.buildService(EndPoints::class.java)
         val call = request.postTest("teste")
@@ -76,4 +97,61 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
+    */
+    fun getNameByEmail(view: View) {
+        val request = ServiceBuilder.buildService(EndPoints::class.java)
+        val call = request.getAllComments()
+        call.enqueue(object : Callback<List<User>> {
+            override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
+                if (response.isSuccessful) {
+                    val users: List<User> = response.body()!!
+                    val emailToFind = "Hudson.Blick@ruben.biz"
+
+                    var name: String? = null
+                    for (user in users) {
+                        if (user.email == emailToFind) {
+                            name = user.name
+                            break
+                        }
+                    }
+
+                    if (name != null) {
+                        Toast.makeText(this@MainActivity, "Name: $name", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this@MainActivity, "Name not found for email: $emailToFind", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<List<User>>, t: Throwable) {
+                Toast.makeText(this@MainActivity, "${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    fun countEmailsEndingWithCom(view: View) {
+        val request = ServiceBuilder.buildService(EndPoints::class.java)
+        val call = request.getAllComments()
+        call.enqueue(object : Callback<List<User>> {
+            override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
+                if (response.isSuccessful) {
+                    val users: List<User> = response.body()!!
+                    var count = 0
+
+                    for (user in users) {
+                        if (user.email.endsWith(".com", ignoreCase = true)) {
+                            count++
+                        }
+                    }
+
+                    Toast.makeText(this@MainActivity, "Number of emails ending with .com: $count", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<List<User>>, t: Throwable) {
+                Toast.makeText(this@MainActivity, "${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
 }

@@ -17,17 +17,28 @@
         android:orientation="horizontal">
         <Button
             android:layout_width="0dp"
-            android:onClick="getSingle"
+            android:onClick="getComments"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Get single">
+            android:text="Get Comments">
         </Button>
         <Button
             android:layout_width="0dp"
-            android:onClick="post"
+            android:onClick="getNameByEmail"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="POST">
+            android:text="Get name">
         </Button>
+
+        <Button
+            android:layout_width="0dp"
+            android:onClick="countEmailsEndingWithCom"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Get number emails with .com">
+        </Button>
+
+
+
     </LinearLayout>
 </RelativeLayout>

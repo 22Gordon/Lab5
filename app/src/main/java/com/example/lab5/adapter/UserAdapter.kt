@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lab5.R
-import com.example.lab5.api.User
+import com.example.lab5 .api.User
 
 
 class UserAdapter(val users: List<User>): RecyclerView.Adapter<UsersViewHolder>() {
@@ -27,12 +27,12 @@ class UserAdapter(val users: List<User>): RecyclerView.Adapter<UsersViewHolder>(
 class UsersViewHolder(itemView : View): RecyclerView.ViewHolder(itemView){
     private val name: TextView = itemView.findViewById(R.id.name)
     private val email:TextView = itemView.findViewById(R.id.email)
-    private val city:TextView = itemView.findViewById(R.id.city)
+    private val body:TextView = itemView.findViewById(R.id.body)
 
     fun bind(user: User) {
         name.text = user.name
-        city.text = user.address.city
-        email.text = email.text
+        body.text = user.body
+        email.text = user.email
     }
 
 }
