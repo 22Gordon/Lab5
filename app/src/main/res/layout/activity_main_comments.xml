@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivityComments">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewComments"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="0dp"
+            android:onClick="getCommentsCount"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Count">
+        </Button>
+        <Button
+            android:layout_width="0dp"
+            android:onClick="getHudsonEmailName"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Hudson">
+        </Button>
+        <Button
+            android:layout_width="0dp"
+            android:onClick="getComEmailsCount"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text=".com">
+        </Button>
+    </LinearLayout>
+</RelativeLayout>
